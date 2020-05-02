@@ -10,7 +10,9 @@ export const signUpAndIn = (user) => {
                     name: user['player_name'],
                     uid: res.user['uid'],
                     team: null,
-                    online: true
+                    online: true,
+                    spyMaster: false,
+                    room: null
                 })                
             })
             .then(()=>dispatch({type: "USER_CREATE_SUCCESS"}))
@@ -47,5 +49,7 @@ export const signOut = () => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
         firebase.auth().signOut()
+            .then(()=>dispatch({type: "USER_SIGNOUT_SUCCES"}))
+            .catch((err)=>{dispatch({type: "USER_SIGNOUT_ERROR", err})})
     }
 }

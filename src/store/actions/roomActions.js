@@ -66,12 +66,11 @@ export const checkGameOver = (room) => {
 export const resetRoom = (room) => {
     return (dispatch, getState, {getFirestore}) => {
         const firestore = getFirestore();
-
-        firestore.collection("rooms").doc(room.room_name).update({
-            active: true,
-            turn: "red",
-            winner: "null",
-            hints: []
-        })
+            firestore.collection("rooms").doc(room.room_name).update({
+                active: true,
+                turn: "red",
+                winner: "null",
+                hints: []
+            })        
     }
 }

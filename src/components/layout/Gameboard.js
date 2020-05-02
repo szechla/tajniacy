@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import * as firebase from 'firebase/app';
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 // Import app components
 import Hints from '../board/Hints'
@@ -105,8 +105,8 @@ class Gameboard extends Component {
         }
 
         this.checkOnlineStatus(user, room)
-        
-        if(!auth.uid) return <Redirect to ="/"/>
+
+        if(!auth.uid) return (<div className="center">Loading...</div>)
 
         return (                           
             <div className="row">

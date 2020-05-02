@@ -18,8 +18,6 @@ export const addHint = (hint, room) => {
             id: `${hint.replace(/\s+/g,"_")}@${Math.floor(Math.random()*999)}`
         }
 
-        console.log(newHint)
-
         firestore.collection("rooms").doc(room.room_name).update({
             hints: firebase.firestore.FieldValue.arrayUnion(newHint)
         })

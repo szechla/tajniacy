@@ -97,34 +97,46 @@ export const newCards = (room) => {
     }
 
         const firestore = getFirestore();
+        // Set all players to regular players (not SpyMasters)
+        firestore.collection("rooms").doc(room).get()
+            .then(data=>data.data())
+            .then(roomData => {
+                for(let i=0; i<roomData.players.length; i++){
+                    firestore.collection("users").doc(roomData.players[i]).update({
+                        spyMaster: false
+                    })
+                }            
+            })
+            // Then get new cards
+            .then(()=>{                
+            firestore.collection("cards").get()
+                .then(cardsCollection =>cardsCollection.docs.map(docs=>{return {id: docs.id, ...docs.data()}} ))
+                .then(allCards => {
+                    let i = 0
 
-        firestore.collection("cards").get()
-            .then(cardsCollection =>cardsCollection.docs.map(docs=>{return {id: docs.id, ...docs.data()}} ))
-            .then(allCards => {
-                let i = 0
-
-                // Get 25 cards from database
-                while(i < 25){
-                    let randomCardId = Math.floor(Math.random()*allCards.length)
-                    let newCard = allCards[randomCardId]
-                    if(!newRoomCards.find(item => item.content === newCard.content)){  
-                        newRoomCards.push(newCard)
-                        i++
+                    // Get 25 cards from database
+                    while(i < 25){
+                        let randomCardId = Math.floor(Math.random()*allCards.length)
+                        let newCard = allCards[randomCardId]
+                        if(!newRoomCards.find(item => item.content === newCard.content)){  
+                            newRoomCards.push(newCard)
+                            i++
+                        }
                     }
-                }
 
-                newRoomCards.map(item=>item.team = "amber")
-                newRoomCards.map(item=>item.clicked = false)
-                
-                segregateCards("red", 8);
-                segregateCards("blue", 7);
-                segregateCards("black", 1)
-
-                // Update firestore collection
-                firestore.collection("rooms").doc(room).update({
-                    cards: newRoomCards
-                })
-            })      
+                    newRoomCards.map(item=>item.team = "amber")
+                    newRoomCards.map(item=>item.clicked = false)
+                    
+                    segregateCards("red", 8);
+                    segregateCards("blue", 7);
+                    segregateCards("black", 1)
+                    
+                    // Update firestore collection
+                    firestore.collection("rooms").doc(room).update({
+                        cards: newRoomCards
+                    })
+                })    
+            })  
     }
 }
 

@@ -38,7 +38,7 @@ class Words extends Component {
         
         return (
             <div className="center m-2">
-                <div className="">Podpowiedzi:</div>
+                <div className="grey accent-2 white-text py-1">Podpowiedzi:</div>
                 {hintInput}
                 <ul>
                     {hintsList}

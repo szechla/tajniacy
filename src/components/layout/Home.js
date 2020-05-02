@@ -38,16 +38,17 @@ class Home extends Component {
         })
     }
 
-    handleEnterRoom = (e) => {
+    handleEnterRoom = async (e) => {
         e.preventDefault();  
-        const checkInputs = this.checkInputFields();      
+        const checkInputs = this.checkInputFields();  
 
         if(checkInputs && this.props.rooms.find(room=>room.room_name === this.state.room_name)){
             this.props.signUpAndIn(this.state)
-            this.props.history.push('/rooms/' + this.state.room_name)
+            if(true) this.props.history.push('/rooms/' + this.state.room_name)
         }
         else if (checkInputs){
             alert("Nie istnieje taki pokój. Stwórzy nowy!")
+            return
         }
     }
 
@@ -55,7 +56,6 @@ class Home extends Component {
         e.preventDefault();
 
         const checkInputs = this.checkInputFields()
-
         if(checkInputs && this.props.rooms.find(room=>room.room_name === this.state.room_name)){
             alert("Taki pokój już istnieje. Stwórz inny lub dołącz do tego.")
         }
@@ -67,8 +67,6 @@ class Home extends Component {
     }
 
     render() {
-        // console.log(this.props)
-        // this.checkInputFields()
         return (
             <div className="container">
                 <h2 className="center">WELCOME</h2>
