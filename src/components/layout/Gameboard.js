@@ -106,7 +106,7 @@ class Gameboard extends Component {
 
         this.checkOnlineStatus(user, room)
 
-        if(!auth.uid) return (<div className="center">Loading...</div>)
+        if(!auth.uid) return (<div className="loading"></div>)
 
         return (                           
             <div className="row">
