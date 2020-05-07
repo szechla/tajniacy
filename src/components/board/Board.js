@@ -18,7 +18,7 @@ const Board = ({gameCards, markCard, room, user}) => {
             return(
             <div className="col l2 l25" key={card.id}>
                 <div className={cardStyle}>
-                    <div id={card.id} className="truncate break auto-width center card-content card-title"  onClick={handleClick}>
+                    <div id={card.id} className="break auto-width center card-content card-title"  onClick={handleClick}>
                         {card.content}
                     </div>
                 </div>

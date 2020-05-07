@@ -110,8 +110,8 @@ class Gameboard extends Component {
 
         return (                           
             <div className="row">
-                <div className="col l2"><Hints room={room}/></div>
-                <div className="col l8">
+                <div className="col s2 l2"><Hints room={room}/></div>
+                <div className="col s8 l8">
                     <div className="row">
                         <div className="col l4 center">
                             <h4><span className="red-text red lighten-4 text-darken-3 px-2">{redScore}</span>
@@ -127,7 +127,7 @@ class Gameboard extends Component {
                         <div className="col l6 center input-field"><button className="btn amber lighten-2 grey-text text-darken-3" onClick={this.newGame}>Nowa Gra</button></div>                    
                     </div>  
                 </div>
-                <div className="col l2"><Teams user={user} players={roomPlayers} changePlayerTeam={changePlayerTeam} checkGameOver={checkGameOver}/></div>
+                <div className="col s2 l2"><Teams user={user} players={roomPlayers} changePlayerTeam={changePlayerTeam} checkGameOver={checkGameOver}/></div>
             </div>
         )
     }

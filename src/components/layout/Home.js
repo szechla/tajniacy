@@ -28,7 +28,7 @@ class Home extends Component {
     handleNameChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,  
-            email: `${e.target.value}@t.tt`  
+            email: `${e.target.value.replace(" ", "_")}@t.tt`  
         })
     }    
     

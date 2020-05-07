@@ -10,11 +10,11 @@ const Teams = ({user, players, changePlayerTeam}) => {
             let spyMasterAddon = ""
             
             const redTeamList = redTeam.map((player)=>{
-                if(player.spyMaster) spyMasterAddon = " ---- "
+                player.spyMaster ? spyMasterAddon = " ---- " : spyMasterAddon = ""
                 return (<li className={"red-text text-darken-3 text-left spyMaster-"+player.spyMaster} key={player.id}>{spyMasterAddon+player.name+spyMasterAddon}</li>)
             })
             const blueTeamList = blueTeam.map((player)=>{
-                if(player.spyMaster) spyMasterAddon = " ---- "
+                player.spyMaster ? spyMasterAddon = " ---- " : spyMasterAddon = ""
                 return (<li className={"blue-text text-darken-3 text-left spyMaster-"+player.spyMaster} key={player.id}>{spyMasterAddon+player.name+spyMasterAddon}</li>)
             })
             const watchersList = watchers.map((player)=><li className="grey-text text-darken-3 text-left" key={player.id}>{player.name}</li>)
@@ -29,13 +29,13 @@ const Teams = ({user, players, changePlayerTeam}) => {
     return (
         <div className="center m-2 row">
             <div className="red lighten-4 red-text text-darken-4 col l10">CZERWONI</div>
-            <button className="red btn-floating btn-small" onClick={changeTeam.bind(null, "red")}><i className="material-icons grey-text text-darken-3">+</i></button>
-            <ul className="col l12 mt-0">
+            <div className="l2"><button className="red btn-floating btn-small" onClick={changeTeam.bind(null, "red")}><i className="material-icons grey-text text-darken-3">+</i></button></div>
+            <ul className="col s12 l12 mt-0">
                 {sortPlayers(players).redTeamList}
             </ul>
 
             <div className="blue lighten-4 blue-text text-darken-4 col l10">NIEBIESCY</div>
-            <button className="btn-floating btn-small blue" onClick={changeTeam.bind(null, "blue")}><i className="material-icons grey-text text-darken-3">+</i></button>
+            <div className="l2"><button className="btn-floating btn-small blue" onClick={changeTeam.bind(null, "blue")}><i className="material-icons grey-text text-darken-3">+</i></button></div>
             <ul className="col l12 mt-0">
                 {sortPlayers(players).blueTeamList}
             </ul>

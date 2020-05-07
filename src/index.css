@@ -15,10 +15,64 @@ code {
 /* --------------------------------
 ------------- MY CSS --------------
 -------------------------------- */
+
+/* Styles for cards */
+
+.black, .red, .blue {
+  color: white;
+}
+
+.amber {
+  color: black;
+}
+
+.opacity20 {
+  opacity: 0.2
+}
+
+/* Styles for elements */
 .l25{
   width: 20%!important
 }
 
+.center-children{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  text-transform: capitalize;
+}
+
+.spyMaster-true{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.spyMasterCards .card-title {
+  font-weight: 400!important
+}
+
+.adminImg {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  width: 1.5%;
+}
+
+/* Styles for text */
+.text-left{
+  text-align: left;
+  padding-left: 5%;
+}
+
+.break {
+  word-break: break-all;
+}
+
+.card-title {
+  font-size: 1.5em
+}
+
+/* Styles for padding and margin */
 .py-1 {
   padding: .25em 0em!important;
 }
@@ -42,45 +96,93 @@ code {
   margin-top: 0px;
 }
 
-.text-left{
-  text-align: left;
-  padding-left: 5%;
+/* --------------------
++++++ ANIMATIONS ++++++
+-------------------- */
+div.loading{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(0);
+  width: 80px;
+  height: 80px;
+  border-radius: 50px/50px;
+  border: solid 8px rgba(201, 201, 201, 0.1);
+  border-top: solid 8px red;
+  animation: loading-animation 3s infinite ease;
 }
 
-.center-children{
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  text-transform: capitalize;
+@keyframes loading-animation {
+  0% { transform: rotate(0deg); border-top-color: red }
+  20% { border-top-color: violet }  
+  40% { border-top-color: blue }
+  60% { border-top-color: green }
+  80% { border-top-color: yellow; }
+  100% { transform: rotate(360deg); border-top-color: red }
 }
 
-.break {
-  word-break: break-all;
+/* --------------------
+++++ MEDIA QUERIES ++++
+---------------------*/
+@media only screen and (max-width: 1376px) {
+  nav .brand-logo{
+    font-size: 1.5rem!important
+  }
+  .card-title{
+    font-size: 1.2rem!important;
+  }
+  .card-content{
+    padding: 15% 2% !important
+  }
+  .input-field.col *{
+    font-size: .75rem;
+  }
+  .input-field.col input {
+    height: 1.8rem
+  }
+  .btn-floating.btn-small,
+  .btn-floating.btn-small i {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 11px;
+  }
 }
 
-.spyMaster-true{
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.spyMasterCards .card-title {
-  font-weight: 400!important
-}
-
-.black, .red, .blue {
-  color: white;
-}
-
-.amber {
-  color: black;
-}
-.adminImg {
-  position: fixed;
-  bottom: 1%;
-  right: 1%;
-  width: 1.5%;
-}
-
-.opacity20 {
-  opacity: 0.2
+@media only screen and (max-width: 840px) {
+  * {
+    font-size: 10px;
+  }
+  nav .brand-logo{
+    font-size: 1.3rem!important
+  }
+  span {
+    font-size: 1rem;
+  }
+  .btn-floating.btn-small,
+  .btn-floating.btn-small i {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    font-size: 7px;
+  }
+  .row {
+    margin-bottom: 2px!important;
+  }
+  .card-title{
+    font-size: .75rem!important
+  }
+  .input-field.col *{
+    font-size: .55rem;
+  }
+  .input-field.col input {
+    height: .9rem
+  }
+  h4, h5{
+    font-size: 1.2rem;
+  }
+  .btn-large{
+    height: 30px;
+    line-height: 30px;
+  }
 }
