@@ -1,8 +1,15 @@
-export const signUpAndIn = (user) => {
+export const signUpAndIn = (user, auth) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
-        
+        const state = getState();
+        const oldRealTimeDb = firebase.database();
+        if (state.firebase.auth.uid) {
+            firebase.auth().signOut()
+            oldRealTimeDb.goOffline();
+            oldRealTimeDb.ref(`/status/${state.firebase.auth.uid}`).set({status: 'offline', room: null})
+        }        
+        oldRealTimeDb.goOnline();
         firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             // Create user - then create doc in firestore
             .then((res)=>{

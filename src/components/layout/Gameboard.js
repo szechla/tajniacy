@@ -27,8 +27,7 @@ class Gameboard extends Component {
         const firestoreDb = firebase.firestore();
         const oldRealTimeDb = firebase.database();
         const usersRef = firestoreDb.collection('users')
-        const roomsRef = firestoreDb.collection('rooms')        
-
+        const roomsRef = firestoreDb.collection('rooms')
         if(user.uid && room){
             oldRealTimeDb
                 .ref(`/status/${user.uid}`)

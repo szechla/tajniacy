@@ -41,7 +41,6 @@ class Home extends Component {
     handleEnterRoom = async (e) => {
         e.preventDefault();  
         const checkInputs = this.checkInputFields();  
-
         if(checkInputs && this.props.rooms.find(room=>room.room_name === this.state.room_name)){
             this.props.signUpAndIn(this.state)
             if(true) this.props.history.push('/rooms/' + this.state.room_name)
@@ -89,7 +88,8 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        rooms: state.firestore.ordered.rooms
+        rooms: state.firestore.ordered.rooms,
+        auth: state.firebase.auth
     }
 }
 
